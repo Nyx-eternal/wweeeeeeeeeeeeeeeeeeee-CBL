@@ -6,5 +6,7 @@ public void MainGame(){
         mainScreen.add(JFrame.EXIT_ON_CLOSE);
         JButton start = new JButton("START GAME");
         mainScreen.getContentPane().add(start, BorderLayout.CENTER);
+        mainScreen.setVisible(true);
     }
 }
+
