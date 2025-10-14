@@ -3,7 +3,7 @@ class MainGame {
     //TO DO: add player object and all UI
     public MainGame(){
         window = new GameWindow();
-        window.buildGame();
+        window.buildStart();
     }
 
     //TO DO: build + run methods
