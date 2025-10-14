@@ -2,7 +2,7 @@ import java.awt.*;
 import javax.swing.*;
 class MainGame {
     //TO DO: add player object and all UI
-
+    GameScreen gameScreen = new GameScreen();
     //TO DO: build + run methods
     void buildStart() {
         JFrame mainScreen = new JFrame("main");
@@ -21,4 +21,5 @@ class MainGame {
         new MainGame().buildStart();
     }
 }
+
 
