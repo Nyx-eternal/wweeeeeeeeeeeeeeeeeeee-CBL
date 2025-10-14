@@ -1,10 +1,15 @@
-import java.awt.event.*;
+import java.awt.*;
 import javax.swing.*;
 
 class GameScreen extends JPanel implements KeyListener{
     private Player player;
 
     //Main Game Screen where the battle would happen
+    public GameScreen(){
+        setBackground(Color.BLACK);
+        JLabel bg = new JLabel(new ImageIcon("./images/placeholder.png"));
+        add(bg);
+    }
     //Added KeyListener + player movements
     //TO DO: add the player sprite + movements in Player class to be used here
      
@@ -19,6 +24,7 @@ class GameScreen extends JPanel implements KeyListener{
         int pressed = e.getKeyCode();
         if(pressed == KeyEvent.VK_W){
             player.moveUp();
+
         }
         if(pressed == KeyEvent.VK_A){
             player.moveLeft();
