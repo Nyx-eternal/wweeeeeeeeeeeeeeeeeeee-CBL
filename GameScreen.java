@@ -24,14 +24,18 @@ class GameScreen extends JPanel implements KeyListener{
     @Override
     protected  void paintComponent(Graphics g){
         super.paintComponent(g);
+        //just to test if the method was even called when having errors
         System.out.println("painting?");
 
         //background first
         g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-        //image goes here + x,y of img
+        //ia set of string just to see if it works
         g.setColor(Color.black);
         g.drawString("...Father?", 100, 100);
-        g.drawImage(player.getSprite(), player.getX(), player.getY(), 320, 320,this);
+
+        //the man, the myth, the legendary player sprite itself
+        //currently placeholder
+        g.drawImage(player.getSprite(), player.getX(), player.getY(), 160, 160, this);
 
     }
     

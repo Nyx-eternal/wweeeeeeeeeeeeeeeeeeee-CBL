@@ -9,7 +9,7 @@ class MainGame implements Runnable{
         screen.gameTime();
         window = new GameWindow();
         window.buildGame(screen);
-        
+        //just to test if the method was even called when having errors
         System.out.println("GAME READY FOR ACTION");
     }
 
@@ -21,7 +21,7 @@ class MainGame implements Runnable{
 
     @Override
     public void run(){
-        // a game loop that runs in the bg for animation loop
+        // a game loop that runs in the bg for player repainting
         double timePerFrame = 1000000000.0 / 120;
         long lastFrame = System.nanoTime();
         long now;
