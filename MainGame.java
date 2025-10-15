@@ -1,25 +1,43 @@
-import java.awt.*;
-import javax.swing.*;
-class MainGame {
+class MainGame implements Runnable{
+    GameWindow window;
+    GameScreen screen;
+     Thread gameLoop;
+
     //TO DO: add player object and all UI
-    GameScreen gameScreen = new GameScreen();
-    //TO DO: build + run methods
-    void buildStart() {
-        JFrame mainScreen = new JFrame("main");
-        JPanel startScreen = new JPanel();
-        startScreen.setBackground(Color.black);
-        mainScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JButton start = new JButton("START GAME");
-        start.setPreferredSize(new Dimension(250, 150));
-        startScreen.add(start, BorderLayout.CENTER);
-        mainScreen.add(startScreen);
-        mainScreen.setSize(800, 600);
-        mainScreen.setVisible(true);
+    public MainGame(){
+        screen = new GameScreen();
+        screen.gameTime();
+        window = new GameWindow();
+        window.buildGame(screen);
+        //just to test if the method was even called when having errors
+        System.out.println("GAME READY FOR ACTION");
     }
+
+    //TO DO: build + run methods
+    private void startGameLoop(){
+        gameLoop = new Thread(this);
+        gameLoop.start();
+    }
+
+    @Override
+    public void run(){
+        // a game loop that runs in the bg for player repainting
+        double timePerFrame = 1000000000.0 / 120;
+        long lastFrame = System.nanoTime();
+        long now;
+        while (true) { 
+            now = System.nanoTime();
+            if(now - lastFrame >= timePerFrame){
+                screen.repaint();
+                lastFrame = now;
+            }
+        }
+    }
+
+
+
 
     public static void main(String arg[]){
-        new MainGame().buildStart();
+        new MainGame();
     }
 }
-
-
