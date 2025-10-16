@@ -37,6 +37,10 @@ class GameScreen extends JPanel implements KeyListener{
         //currently placeholder
         g.drawImage(player.getSprite(), player.getX(), player.getY(), 160, 160, this);
 
+        //hp bar
+        g.setColor(Color.red);
+        g.fillRect(20, 20, player.getHP()*2, 15);
+
     }
     
     @Override
@@ -64,6 +68,7 @@ class GameScreen extends JPanel implements KeyListener{
     public void keyReleased(KeyEvent e){
         //TO DO: placeholder code
     }
+    
     @Override
     public void keyTyped(KeyEvent e){
         //TO DO: placeholder code
