@@ -5,6 +5,8 @@ class Player extends Movement{
     //The player character 
     int maxHP;
     int hp; //all other vars are declared in Movement class so i erased them here
+    Image spriteL;
+    Image spriteR;
     Image sprite;
 
     //Constructor w/ factory settings < we need to be able to affect only from outside
@@ -14,13 +16,24 @@ class Player extends Movement{
         maxHP = 100;
         hp = maxHP;
         speed = 20;
-        sprite = new ImageIcon("./images/robot.png").getImage();
+        spriteR = new ImageIcon("./images/robot.png").getImage();
+        spriteL = new ImageIcon("./images/robotLeft.png").getImage();
+        sprite = spriteR;
     }
 
     //DOESNT TURN / DOESNT USE TURN METHODS
     //TO DO hp fluctuation + add the item button here? where should it go?
     public Image getSprite(){
         return sprite;
+    }
+
+    public void moveLeft(){
+        super.moveLeft();
+        sprite = spriteL;
+    }
+    public void moveRight(){
+        super.moveRight();
+        sprite = spriteR;
     }
 
     public void takeDamage(int i){
