@@ -1,33 +1,15 @@
-import java.awt.*;
-import javax.swing.*;
+import javax.swing.ImageIcon;
 
-class Player extends Movement{
-    //The player character 
-    int hp; //all other vars are declared in Movement class so i erased them here
-    Image sprite;
+public class Boss {
 
-    //Constructor w/ factory settings < we need to be able to affect only from outside
-    public Player(){
-        x = 0;
-        y = 0;
-        hp = 100;
-        speed = 20;
-        sprite = new ImageIcon("./images/robot.png").getImage();
-    }
-
-    //DOESNT TURN / DOESNT USE TURN METHODS
-    //TO DO hp fluctuation + add the item button here? where should it go?
-    public Image getSprite(){
-        return sprite;
-    }
-}
-
-class Boss {
     private int hp;
     private final int maxHp;
     private int damage;
     private Image sprite;
     private int x, y;
+    public int getX() { return x; }
+    public int getY() { return y; }
+
 
     public Boss(int startX, int startY) {
         this.x = startX;
@@ -63,3 +45,5 @@ class Boss {
 
     
 }
+
+
