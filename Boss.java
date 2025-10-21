@@ -1,11 +1,8 @@
-import javax.swing.ImageIcon;
-
 public class Boss {
 
     private int hp;
     private final int maxHp;
     private int damage;
-    private Image sprite;
     private int x, y;
     public int getX() { return x; }
     public int getY() { return y; }
@@ -17,11 +14,6 @@ public class Boss {
         this.maxHp = 300;
         this.hp = maxHp;
         this.damage = 25;
-        this.sprite = new ImageIcon("./images/boss.png").getImage();
-    }
-
-    public Image getSprite() {
-        return sprite;
     }
 
     public int getHp() {
@@ -37,9 +29,15 @@ public class Boss {
         if (hp < 0) hp = 0;
     }
 
-    public void attack(Player player) {
-        if (player.isAlive()) {
-            player.takeDamage(damage);
+    public int phase(){
+        if(hp >= 50){
+            return 1;
+        }
+        else if(hp < 50 && hp > 0){
+            return 2;
+        }
+        else {
+            return 0;
         }
     }
 
