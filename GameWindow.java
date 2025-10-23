@@ -6,7 +6,7 @@ class GameWindow {
 
     public GameWindow(){
         jframe = new JFrame("main");
-        jframe.setSize(800, 600);
+        jframe.setSize(1000, 1000);
         jframe.setLocationRelativeTo(null);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //just to test if the method was even called when having errors

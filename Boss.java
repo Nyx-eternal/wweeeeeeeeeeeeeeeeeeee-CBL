@@ -2,18 +2,12 @@ public class Boss {
 
     private int hp;
     private final int maxHp;
-    private int damage;
-    private int x, y;
-    public int getX() { return x; }
-    public int getY() { return y; }
 
 
-    public Boss(int startX, int startY) {
-        this.x = startX;
-        this.y = startY;
+
+    public Boss() {
         this.maxHp = 300;
         this.hp = maxHp;
-        this.damage = 25;
     }
 
     public int getHp() {
@@ -30,10 +24,10 @@ public class Boss {
     }
 
     public int phase(){
-        if(hp >= 50){
+        if(hp >= 150){
             return 1;
         }
-        else if(hp < 50 && hp > 0){
+        else if(hp < 150 && hp > 0){
             return 2;
         }
         else {

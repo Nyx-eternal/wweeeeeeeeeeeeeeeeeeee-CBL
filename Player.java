@@ -8,13 +8,12 @@ class Player extends Movement{
 
     //Constructor w/ factory settings < we need to be able to affect only from outside
     public Player(){
-        x = 0;
-        y = 0;
+        x = 460;
+        y = 570;
         hp = 100;
         speed = 20;
-        sprite = new ImageIcon("./images/robot.png").getImage();
+        sprite = new ImageIcon("./images/player1/right/playerIdleR.jpeg").getImage();
     }
-
     //DOESNT TURN / DOESNT USE TURN METHODS
     //TO DO hp fluctuation + add the item button here? where should it go?
     public Image getSprite(){

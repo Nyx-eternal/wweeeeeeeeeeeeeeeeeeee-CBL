@@ -23,14 +23,13 @@ class MainGame implements Runnable{
     @Override
     public void run(){
         // a game loop that runs in the bg for player repainting
-        double timePerFrame = 1000000000.0 / 120;
-        long lastFrame = System.nanoTime();
-        long now;
         while (true) { 
-            now = System.nanoTime();
-            if(now - lastFrame >= timePerFrame){
-                screen.repaint();
-                lastFrame = now;
+            screen.repaint();
+            try {
+                Thread.sleep(8);
+            }
+            catch(InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
     }
@@ -40,5 +39,6 @@ class MainGame implements Runnable{
 
     public static void main(String arg[]){
         new MainGame();
+        new Attacks(6).move();
     }
 }
