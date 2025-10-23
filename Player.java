@@ -32,6 +32,12 @@ class Player extends Movement{
         hp -= dmg;
         if (hp < 0) hp = 0;
     }
+    public void setY(int i) {
+        y = i;
+        }
+    public void setX(int i) {
+        x = i;
+    }
     
 }
 

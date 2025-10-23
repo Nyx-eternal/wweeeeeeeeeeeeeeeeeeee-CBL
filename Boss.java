@@ -1,13 +1,21 @@
+import java.util.*;
+
 public class Boss {
 
     private int hp;
     private final int maxHp;
+    ArrayList<Attacks> bullets = new ArrayList<Attacks>();
+    int lowerLimit;
+    int upperLimit;
+    Random r = new Random();
 
 
 
     public Boss() {
         this.maxHp = 300;
         this.hp = maxHp;
+        lowerLimit = 2;
+        upperLimit = 5;
     }
 
     public int getHp() {
@@ -17,6 +25,7 @@ public class Boss {
     public boolean isAlive() {
         return hp > 0;
     }
+
 
     public void takeDamage(int dmg) {
         hp -= dmg;
@@ -35,6 +44,18 @@ public class Boss {
         }
     }
 
+    public void nextAttack(){
+        for(int i = 0; i < r.nextInt(lowerLimit, upperLimit); i++){
+            bullets.add(new Attacks());
+        }
+    }
+
+    public ArrayList<Attacks> attack(){
+        for( Attacks a : bullets){
+            a.move();
+        }
+        return bullets;
+    }
     
 }
 

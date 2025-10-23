@@ -1,12 +1,13 @@
 import java.util.Random;
 
 class Attacks extends Movement {
+    Random r = new Random();
     //Class that should generate little objects that will move by themselves so that they are bullets
     //TURNS
-    public Attacks(int spd){
-        x =
-        y = 
-        speed = spd;
+    public Attacks(){
+        x = r.nextInt(1000);
+        y = r.nextInt(425, 766);
+        speed = 1;
     }
     private int dmg;
     //keys
@@ -16,8 +17,11 @@ class Attacks extends Movement {
         }
     }
 
+    public void faster(){
+        speed++;
+    }
+
     public void move(){
-        Random r = new Random();
         int i = r.nextInt(1, 5);
         switch(i){
             case 1:
@@ -31,4 +35,11 @@ class Attacks extends Movement {
         }
     }
 
+    public int getX(){
+        return x;
+    }
+    
+    public int getY(){
+        return y;
+    }
 }
