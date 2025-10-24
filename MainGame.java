@@ -26,11 +26,22 @@ class MainGame implements Runnable{
         double timePerFrame = 1000000000.0 / 120;
         long lastFrame = System.nanoTime();
         long now;
+        int i = 0;
         while (true) { 
             now = System.nanoTime();
             if(now - lastFrame >= timePerFrame){
+                if(i %  50== 0){
+                    screen.boss.nextAttack();
+                }
                 screen.repaint();
                 lastFrame = now;
+                
+                if(i % 20 == 0){
+                    for(Attacks a : screen.boss.attack()){
+                        a.faster();
+                    }
+                }
+                i++;
             }
         }
     }
