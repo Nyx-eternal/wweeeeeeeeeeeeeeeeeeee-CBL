@@ -56,6 +56,7 @@ public class Boss {
         }
         return bullets;
     }
+        public java.util.List<Attacks> getBullets() { return bullets; }
     
 }
 

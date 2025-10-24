@@ -20,13 +20,13 @@ class Player extends Movement{
         spriteR = new ImageIcon("./images/robot.png").getImage();
         spriteL = new ImageIcon("./images/robotLeft.png").getImage();
         sprite = spriteR;
-=======
+
         x = 460;
         y = 570;
         hp = 100;
         speed = 20;
         sprite = new ImageIcon("./images/player1/right/playerIdleR.jpeg").getImage();
->>>>>>> 2e991b54f6a77f92c029824e6213fd0ed1e6d191
+
     }
     //DOESNT TURN / DOESNT USE TURN METHODS
     //TO DO hp fluctuation + add the item button here? where should it go?
@@ -34,7 +34,7 @@ class Player extends Movement{
         return sprite;
     }
 
-<<<<<<< HEAD
+
     public void moveLeft(){
         super.moveLeft();
         sprite = spriteL;
@@ -57,7 +57,7 @@ class Player extends Movement{
     public int getHP(){
         return hp;
     }
-=======
+
     public int getHP() {
         return hp;
     }
@@ -77,6 +77,15 @@ class Player extends Movement{
         x = i;
     }
     
->>>>>>> 2e991b54f6a77f92c029824e6213fd0ed1e6d191
+
+    public boolean isAlive() {
+        return hp > 0;
+    }
+
+    public Rectangle getBounds() {
+        // keep it simple; tune the 48x48 later if you want
+        return new Rectangle(x, y, 48, 48);
+    }
+
 }
 

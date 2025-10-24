@@ -10,6 +10,7 @@ class Attacks extends Movement {
         speed = 1;
     }
     private int dmg;
+
     //keys
     public void attack(Player player) {
         if (player.isAlive()) {
@@ -42,4 +43,20 @@ class Attacks extends Movement {
     public int getY(){
         return y;
     }
+        public java.awt.Rectangle getBounds() {
+        return new java.awt.Rectangle(x, y, width, height);
+    }
+
+    public int getDamage() { return dmg; }
+
+    public boolean isActive() { return active; }
+
+    public void deactivate() { active = false; }
+
+    // Boss attack calls
+    public void move() {
+        // bullets travel left
+        x -= speed;
+    }
+
 }
