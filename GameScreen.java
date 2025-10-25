@@ -9,8 +9,8 @@ class GameScreen extends JPanel implements KeyListener{
     private boolean begin;
     private final Image boss1 = new ImageIcon("./images/boss1.jpeg").getImage();
     private final Image boss2 = new ImageIcon("./images/boss2.jpeg").getImage();
-    private final Image bossBeat = new ImageIcon("./images/bossBeat.jpeg").getImage();
-
+    private final Image bossBeat = new ImageIcon("./images/bossBeat.png").getImage();
+    private final Image gameover = new ImageIcon("./images/gameover.png").getImage();
     //Main Game Screen where the battle would happen
     public GameScreen(){
         setBackground(Color.black);
@@ -27,6 +27,11 @@ class GameScreen extends JPanel implements KeyListener{
         this.boss = new Boss();
     }
 
+    public void restart(){
+        player.restart();
+        boss.restart();
+        begin = false;
+    }
 
 
 
@@ -36,13 +41,19 @@ class GameScreen extends JPanel implements KeyListener{
         super.paintComponent(g);
 
         if(!begin){
-        g.drawImage(startScreen, 0, 0, getWidth(), getHeight(), this);
-    }
-    else{
-        //GAMEOVER screen
-        if(!player.isAlive()){
-           // g.drawImage(/*to be filled*/);
+            g.drawImage(startScreen, 0, 0, getWidth(), getHeight(), this);
         }
+        else if(!player.isAlive()){
+            //gameover screen
+            
+           g.drawImage(gameover, 0, 0, getWidth(), getHeight(), this);
+        }
+        else if(!boss.isAlive()){
+            //win screen
+            g.drawImage(bossBeat, 0, 0, getWidth(), getHeight(), this);
+
+        }
+        else{
         //background + boss
             if(!boss.isAlive()){
                 g.drawImage(bossBeat, 0, 0, getWidth(), getHeight(), this);
@@ -51,16 +62,24 @@ class GameScreen extends JPanel implements KeyListener{
             {
                 g.drawImage(boss1, 0, 0 ,getWidth(), getHeight(), this); 
                 for(Attacks a : boss.attack()){
-                    //g.drawImage("./image/lightning.png", a.getX(), a.getY(), 15, 20, this);
-                    g.setColor(Color.white);
-                    g.fillOval(a.getX(), a.getY(), 15, 20);
+                    g.drawImage(a.getSprite(), a.getX(), a.getY(), a.getWidth(), a.getHeight(), this);
                 } 
             }
             else{
                 g.drawImage(boss2, 0, 0, getWidth(), getHeight(), this);
+                for(Attacks a : boss.attack()){
+                    if(a.isActive()){
+                    g.drawImage(a.getSprite(), a.getX(), a.getY(), a.getWidth(), a.getHeight(), this);
+                    }
+                }
             }
-            g.drawImage(player.getSprite(), player.getX(), player.getY(), 40, 100, this);
-            
+            g.drawImage(player.getSprite(), player.getX(), player.getY(), 70, 55, this);
+        
+        g.setColor(Color.black);
+        g.fillRect(25, 865, player.getMaxHP()*4, 15);
+        g.fillRect(20, 5, boss.getMaxHp()*17/9, 15);
+        g.setColor(Color.blue);
+        g.fillRect(20, 5, boss.getHp()*17/9, 15);
         g.setColor(Color.green);
         g.fillRect(25, 865, player.getHP()*4, 15);
         g.setColor(Color.white);
@@ -103,12 +122,21 @@ class GameScreen extends JPanel implements KeyListener{
                 player.setX(952);
             }
         }
+        if(pressed ==  KeyEvent.VK_SPACE){
+            boss.takeDamage((int)(Math.random()*21)+ 10);
+            
+        }
         begin = true;
+
+        if(!player.isAlive() || !boss.isAlive()){
+            if(pressed == KeyEvent.VK_R){
+                restart();
+            }
+        }
     }
     @Override
     public void keyReleased(KeyEvent e){
         //TO DO: placeholder code
-        begin = true;
     }
 
     @Override

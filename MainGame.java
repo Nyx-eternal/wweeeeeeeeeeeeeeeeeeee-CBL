@@ -1,3 +1,12 @@
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 class MainGame implements Runnable{
     GameWindow window;
     GameScreen screen;
@@ -30,18 +39,37 @@ class MainGame implements Runnable{
         while (true) { 
             now = System.nanoTime();
             if(now - lastFrame >= timePerFrame){
-                if(i %  50== 0){
+                if(i %  120 == 0){
                     screen.boss.nextAttack();
                 }
                 screen.repaint();
                 lastFrame = now;
-                
-                if(i % 20 == 0){
-                    for(Attacks a : screen.boss.attack()){
+                for(Attacks a : screen.boss.attack()){
+                    if(a.isActive()){
+                        if (Collision.rectsIntersect(a.getBounds(), screen.player.getBounds())) {
+                            screen.player.takeDamage(a.getDamage());
+                            a.deactivate(); 
+                        }
+                    }
+                    if(i % 120 == 0){
                         a.faster();
+                        if(screen.boss.phase() == 2){
+                            a.faster();
+                            a.faster();
+                            screen.boss.phase2();
+                        }
                     }
                 }
+                if(!screen.boss.isAlive()){
+                    for(Attacks a : screen.boss.attack()){
+                        a.deactivate();
+                    }
+                    
+                }
                 i++;
+                if(!screen.player.isAlive()){
+                    i = 0;
+                }
             }
         }
     }
@@ -50,6 +78,16 @@ class MainGame implements Runnable{
 
 
     public static void main(String arg[]){
+        try{
+            File soundFile = new File("./sfx/startgame.aiff");
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            volumeControl.setValue(-10.0f);
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        }
         new MainGame();
     }
 }
