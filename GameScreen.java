@@ -39,8 +39,6 @@ class GameScreen extends JPanel implements KeyListener{
     @Override
     protected  void paintComponent(Graphics g){
         super.paintComponent(g);
-        //just to test if the method was even called when having errors
-        System.out.println("painting?");
 
         if(!begin){
             g.drawImage(startScreen, 0, 0, getWidth(), getHeight(), this);
@@ -127,19 +125,25 @@ class GameScreen extends JPanel implements KeyListener{
         }
         begin = true;
 
-        if(!player.isAlive() || !boss.isAlive()){
             if(pressed == KeyEvent.VK_R){
                 restart();
             }
-        }
     }
     @Override
     public void keyReleased(KeyEvent e){
         //TO DO: placeholder code
+        int pressed = e.getKeyCode();
+        if(pressed == KeyEvent.VK_R){
+                restart();
+            }
     }
 
     @Override
     public void keyTyped(KeyEvent e){
         //TO DO: placeholder code
+        int pressed = e.getKeyCode();
+        if(pressed == KeyEvent.VK_R){
+                restart();
+            }
     }
 }

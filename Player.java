@@ -16,7 +16,7 @@ class Player extends Movement{
         x = 460;
         y = 570;
         hp = maxHP;
-        speed = 20;
+        speed = 25;
         sprite = spriteN;
     }
     //DOESNT TURN / DOESNT USE TURN METHODS
@@ -38,31 +38,23 @@ class Player extends Movement{
         return hp > 0;
     }
 
-    public void takeDamage(int dmg) {
+    public void takeDamage(int dmg){
         hp -= dmg;
-        if (hp < 0){
-            hp = 0;
-            try{
-            File soundFile = new File("./sfx/gameover.aiff");
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            volumeControl.setValue(-900.0f);
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-        }
-        }
         sprite = hurtSprite;
-        try{
-            File soundFile = new File("./sfx/playerDmg.aiff");
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            volumeControl.setValue(-10.0f);
-        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+        if(isAlive()){
+            try{
+                File soundFile = new File("./sfx/playerDmg.aiff");
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundFile);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.start();
+                FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                volumeControl.setValue(-10.0f);
+            } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {}
+        
+        }
+        else{
+            hp = 0;
         }
         
     }
