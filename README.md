@@ -1,16 +1,9 @@
-# wweeeeeeeeeeeeeeeeeeee-CBL
-15/10/2025
-DONE : 
--added the start screen + button (size and designs TBD)
--started on gamescreen (bg works has player movement + paintComponent done )
--movement class done(more or less done except a few tweaks)
--player methods(works w/ placeholder)[all thats needed is the HP stuff done]
--attacks class declared(still empty)
--temp sprites that work
-TO DO:
--work on the attack class and all it entails
--declare another class for BOSS (not sure on the specifics rn)
--get started on the ATTACK and ITEM buttons and get them functioning (maybe a click instead? or a button? cuz the jbuttons are ugly af)
--look into changing between panels in frame(animation)
--hp needs to happen (mb another class/mb just in Player class)
--start working on what collision detection will need in terms of components !!!! <<<<------- FIRST ORDER OF BUSINESS
+For the best experience I reccomend not playing in fullscreen.
+!!AUDIO WARNING: the gameover screen is quite loud so wouldnt reccomend having your volume too high.
+
+CONTROLS :
+W, A, S, D - movement
+SPACE_BAR - attack
+R - reset in a win or gameover screen
+
+To start, all you need to do is press any key. The goal is to defeat the boss. At the halfway point, the boss enters Phase 2 which means the attacks you dodge get faster quicker, and that there are more overall. The bar at the top of the screen is the bosses health, and the green bar at the bottom is your, the player's, health.

@@ -5,8 +5,7 @@ import javax.swing.*;
 
 class Player extends Movement{
     //The player character 
-    int maxHP;
-    int hp; //all other vars are declared in Movement class so i erased them here
+    int hp;
     private final int maxHP = 100;
     Image sprite;
     Image hurtSprite = new ImageIcon("./images/playerHurt.png").getImage();
@@ -26,31 +25,7 @@ class Player extends Movement{
         return sprite;
     }
 
-
-    public void moveLeft(){
-        super.moveLeft();
-        sprite = spriteL;
-    }
-    public void moveRight(){
-        super.moveRight();
-        sprite = spriteR;
-    }
-
-    public void takeDamage(int i){
-        hp -= i;
-    }
-
-    public void heal(int i){
-        hp += i;
-        if(hp > maxHP){
-            hp = maxHP;
-        }
-    }
     public int getHP(){
-        return hp;
-    }
-
-    public int getHP() {
         return hp;
     }
 

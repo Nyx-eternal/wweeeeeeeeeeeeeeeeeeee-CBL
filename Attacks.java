@@ -79,20 +79,5 @@ class Attacks extends Movement {
     public void deactivate() {
         active = false;
     }
-        public java.awt.Rectangle getBounds() {
-        return new java.awt.Rectangle(x, y, width, height);
-    }
-
-    public int getDamage() { return dmg; }
-
-    public boolean isActive() { return active; }
-
-    public void deactivate() { active = false; }
-
-    // Boss attack calls
-    public void move() {
-        // bullets travel left
-        x -= speed;
-    }
 
 }
