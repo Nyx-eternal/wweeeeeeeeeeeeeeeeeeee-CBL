@@ -9,8 +9,8 @@ class GameScreen extends JPanel implements KeyListener{
     private boolean begin;
     private final Image boss1 = new ImageIcon("./images/boss1.jpeg").getImage();
     private final Image boss2 = new ImageIcon("./images/boss2.jpeg").getImage();
-    private final Image bossBeat = new ImageIcon("./images/bossBeat.jpeg").getImage();
-
+    private final Image bossBeat = new ImageIcon("./images/bossBeat.png").getImage();
+    private final Image gameover = new ImageIcon("./images/gameover.png").getImage();
     //Main Game Screen where the battle would happen
     public GameScreen(){
         setBackground(Color.black);
@@ -27,6 +27,11 @@ class GameScreen extends JPanel implements KeyListener{
         this.boss = new Boss();
     }
 
+    public void restart(){
+        player.restart();
+        boss.restart();
+        begin = false;
+    }
 
 
 
@@ -37,11 +42,50 @@ class GameScreen extends JPanel implements KeyListener{
         //just to test if the method was even called when having errors
         System.out.println("painting?");
 
-        //background first
-        g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
-        //ia set of string just to see if it works
+        if(!begin){
+            g.drawImage(startScreen, 0, 0, getWidth(), getHeight(), this);
+        }
+        else if(!player.isAlive()){
+            //gameover screen
+            
+           g.drawImage(gameover, 0, 0, getWidth(), getHeight(), this);
+        }
+        else if(!boss.isAlive()){
+            //win screen
+            g.drawImage(bossBeat, 0, 0, getWidth(), getHeight(), this);
+
+        }
+        else{
+        //background + boss
+            if(!boss.isAlive()){
+                g.drawImage(bossBeat, 0, 0, getWidth(), getHeight(), this);
+            }
+            else if(boss.phase() == 1)
+            {
+                g.drawImage(boss1, 0, 0 ,getWidth(), getHeight(), this); 
+                for(Attacks a : boss.attack()){
+                    g.drawImage(a.getSprite(), a.getX(), a.getY(), a.getWidth(), a.getHeight(), this);
+                } 
+            }
+            else{
+                g.drawImage(boss2, 0, 0, getWidth(), getHeight(), this);
+                for(Attacks a : boss.attack()){
+                    if(a.isActive()){
+                    g.drawImage(a.getSprite(), a.getX(), a.getY(), a.getWidth(), a.getHeight(), this);
+                    }
+                }
+            }
+            g.drawImage(player.getSprite(), player.getX(), player.getY(), 70, 55, this);
+        
         g.setColor(Color.black);
-        g.drawString("...Father?", 100, 100);
+        g.fillRect(25, 865, player.getMaxHP()*4, 15);
+        g.fillRect(20, 5, boss.getMaxHp()*17/9, 15);
+        g.setColor(Color.blue);
+        g.fillRect(20, 5, boss.getHp()*17/9, 15);
+        g.setColor(Color.green);
+        g.fillRect(25, 865, player.getHP()*4, 15);
+        g.setColor(Color.white);
+        g.drawString("HP", 5, 877);
 
         }
         //the man, the myth, the legendary player sprite itself
@@ -61,27 +105,44 @@ class GameScreen extends JPanel implements KeyListener{
         int pressed = e.getKeyCode();
         if(pressed == KeyEvent.VK_W){
             player.moveUp();
-            repaint();
+            if(player.getY() < 422){
+                player.setY(422);
+            }
 
         }
         if(pressed == KeyEvent.VK_A){
             player.moveLeft();
-            repaint();
+            if(player.getX() < -1){
+                player.setX(-1);
+            }
         }
         if(pressed == KeyEvent.VK_S){
             player.moveDown();
-            repaint();
+            if(player.getY() > 805){
+                player.setY(805);
+            }
         }
         if(pressed == KeyEvent.VK_D){
             player.moveRight();
-            repaint();
+            if(player.getX() > 920){
+                player.setX(920);
+            }
+        }
+        if(pressed ==  KeyEvent.VK_SPACE){
+            boss.takeDamage((int)(Math.random()*11)+ 5);
+            
         }
         begin = true;
+
+        if(!player.isAlive() || !boss.isAlive()){
+            if(pressed == KeyEvent.VK_R){
+                restart();
+            }
+        }
     }
     @Override
     public void keyReleased(KeyEvent e){
         //TO DO: placeholder code
-        begin = true;
     }
 
     @Override
