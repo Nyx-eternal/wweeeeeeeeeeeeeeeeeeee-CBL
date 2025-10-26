@@ -39,6 +39,8 @@ class GameScreen extends JPanel implements KeyListener{
     @Override
     protected  void paintComponent(Graphics g){
         super.paintComponent(g);
+        //just to test if the method was even called when having errors
+        System.out.println("painting?");
 
         if(!begin){
             g.drawImage(startScreen, 0, 0, getWidth(), getHeight(), this);
@@ -91,6 +93,10 @@ class GameScreen extends JPanel implements KeyListener{
 
         //hp bar
     
+
+        //hp bar
+        g.setColor(Color.red);
+        g.fillRect(20, 20, player.getHP()*2, 15);
 
     }
     
