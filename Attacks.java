@@ -16,7 +16,7 @@ class Attacks extends Movement {
         y = r.nextInt(425, 766);
         width = r.nextInt(25, 75);
         height = r.nextInt(30, 80);
-        dmg = 100;
+        dmg = 1;
         speed = 1;
         int i = r.nextInt(1, 4);
         switch (i) {

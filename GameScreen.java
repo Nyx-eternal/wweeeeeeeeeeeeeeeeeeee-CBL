@@ -99,31 +99,31 @@ class GameScreen extends JPanel implements KeyListener{
         int pressed = e.getKeyCode();
         if(pressed == KeyEvent.VK_W){
             player.moveUp();
-            if(player.getY() < 425){
-                player.setY(425);
+            if(player.getY() < 422){
+                player.setY(422);
             }
 
         }
         if(pressed == KeyEvent.VK_A){
             player.moveLeft();
-            if(player.getX() < -3){
-                player.setX(-3);
+            if(player.getX() < -1){
+                player.setX(-1);
             }
         }
         if(pressed == KeyEvent.VK_S){
             player.moveDown();
-            if(player.getY() > 765){
-                player.setY(765);
+            if(player.getY() > 805){
+                player.setY(805);
             }
         }
         if(pressed == KeyEvent.VK_D){
             player.moveRight();
-            if(player.getX() > 952){
-                player.setX(952);
+            if(player.getX() > 920){
+                player.setX(920);
             }
         }
         if(pressed ==  KeyEvent.VK_SPACE){
-            boss.takeDamage((int)(Math.random()*21)+ 10);
+            boss.takeDamage((int)(Math.random()*11)+ 5);
             
         }
         begin = true;
