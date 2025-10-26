@@ -76,28 +76,21 @@ class GameScreen extends JPanel implements KeyListener{
                 }
             }
             g.drawImage(player.getSprite(), player.getX(), player.getY(), 70, 55, this);
+       
         
-        g.setColor(Color.black);
-        g.fillRect(25, 865, player.getMaxHP()*4, 15);
-        g.fillRect(20, 5, boss.getMaxHp()*17/9, 15);
-        g.setColor(Color.blue);
-        g.fillRect(20, 5, boss.getHp()*17/9, 15);
-        g.setColor(Color.green);
-        g.fillRect(25, 865, player.getHP()*4, 15);
-        g.setColor(Color.white);
-        g.drawString("HP", 5, 877);
+            g.setColor(Color.black);
+            g.fillRect(25, 865, player.getMaxHP()*4, 15);
+            g.fillRect(20, 5, boss.getMaxHp()*17/9, 15);
 
+            g.setColor(Color.blue);
+            g.fillRect(20, 5, boss.getHp()*17/9, 15);
+
+            g.setColor(Color.green);
+            g.fillRect(25, 865, player.getHP()*4, 15);
+
+            g.setColor(Color.white);
+            g.drawString("HP", 5, 877);
         }
-        //the man, the myth, the legendary player sprite itself
-        //currently placeholder
-
-        //hp bar
-    
-
-        //hp bar
-        g.setColor(Color.red);
-        g.fillRect(20, 20, player.getHP()*2, 15);
-
     }
     
     @Override
